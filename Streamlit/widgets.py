@@ -8,6 +8,3 @@ st.write(f"Your age is {age}")
 name=st.text_input("Enter your name:")
 if name:
     st.write(f"Hello, {name}")
-
-
-    

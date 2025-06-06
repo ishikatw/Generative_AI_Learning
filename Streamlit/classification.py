@@ -29,4 +29,3 @@ prediction=model.predict(input_data)
 predicted_species=target_names[prediction[0]]
 
 st.write(f"The predicted species is {predicted_species}")
-
