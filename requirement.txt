@@ -5,5 +5,5 @@ matplotlib
 flask
 memory_profiler
 streamlit
-scikit-learn
 seaborn
+scikit-learn
