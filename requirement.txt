@@ -7,3 +7,4 @@ memory_profiler
 streamlit
 seaborn
 scikit-learn
+nltk
