@@ -35,11 +35,15 @@ def bag_of_words(text):
     word_counts = Counter(words)
     return word_counts
 
-def bag_of_words_vector(texts):
+def bag_of_words_vector(texts, ngram_range=(1, 1)):
     """
-    Generate a Bag of Words vector representation for a list of texts.
+    Generate a Bag of Words vector representation for a list of texts with n-grams support.
+    
+    Parameters:
+    - texts: List of preprocessed texts.
+    - ngram_range: Tuple specifying the range of n-grams (e.g., (1, 1) for unigrams, (1, 2) for unigrams and bigrams).
     """
-    vectorizer = CountVectorizer()
+    vectorizer = CountVectorizer(ngram_range=ngram_range)
     bow_matrix = vectorizer.fit_transform(texts)
     return bow_matrix, vectorizer.get_feature_names_out()
 
@@ -58,7 +62,12 @@ if __name__ == "__main__":
     bow_dict = [bag_of_words(text) for text in processed_texts]
     print("Bag of Words Dictionary:", bow_dict)
     
-    # Generate Bag of Words vector
-    bow_matrix, feature_names = bag_of_words_vector(processed_texts)
-    print("\nBag of Words Vector (Sparse Matrix):\n", bow_matrix.toarray())
-    print("\nFeature Names:", feature_names)
+    # Generate Bag of Words vector with unigrams
+    bow_matrix, feature_names = bag_of_words_vector(processed_texts, ngram_range=(1, 2))
+    print("\nBag of Words Vector (Unigrams):\n", bow_matrix.toarray())
+    print("\nFeature Names (Unigrams):", feature_names)
+    
+    # Generate Bag of Words vector with unigrams and bigrams
+    bow_matrix_ngrams, feature_names_ngrams = bag_of_words_vector(processed_texts, ngram_range=(1, 2))
+    print("\nBag of Words Vector (Unigrams and Bigrams):\n", bow_matrix_ngrams.toarray())
+    print("\nFeature Names (Unigrams and Bigrams):", feature_names_ngrams)
